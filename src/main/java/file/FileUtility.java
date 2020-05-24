@@ -44,7 +44,7 @@ public class FileUtility<T extends Serializable> {
              ObjectInputStream objectIn = new ObjectInputStream(fileIn);) {
             return (T) objectIn.readObject();
         } catch(Exception ex){
-            System.err.println("You firstly opened this app or file deleted");
+            System.err.println("You are firstly open this app or file has been deleted");
             return null;
         }
     }

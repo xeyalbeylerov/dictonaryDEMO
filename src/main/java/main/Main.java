@@ -13,7 +13,6 @@ public class Main {
     public static void main(String[] args) {
         Config c = Context.getFileUtility().readObjectFromFile();
         Config.setConfig(c);
-        System.out.println(c);
         startApp();
     }
 
@@ -24,7 +23,6 @@ public class Main {
             while (true) {
                 MenuUtil.selectMenu(personIndex);
 
-                System.out.println("Dict size " + Config.getInstance().getDict().size());
             }
 
         } else {

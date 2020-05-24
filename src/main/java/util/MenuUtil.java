@@ -5,7 +5,7 @@ import file.FileUtility;
 import main.Context;
 
 public class MenuUtil {
-    public static void selectMenuText(int i) {
+    private static void selectMenuText(int i) {
         if (i == 1) {
             System.out.println("1. Add language\n" +
                     "2. Add words\n" +
@@ -24,8 +24,8 @@ public class MenuUtil {
     }
 
 
-    public static void selectMenuInput(int i) {
-        int selectedMenu = InputUtil.typeInteger("Menu seçin: ");
+    private static void selectMenuInput(int i) {
+        int selectedMenu = InputUtil.typeInteger("Choose menu: ");
         if (i == 1) {
 
             if (selectedMenu == 1) {
@@ -43,7 +43,7 @@ public class MenuUtil {
 //                FileUtility.WriteObjectToFile(Config.getInstance());
                 System.exit(0);
             } else {
-                System.out.println("Yanlış seçim");
+                System.out.println("Incorrect choice");
                 selectMenu(i);
             }
         } else if (i == 0) {
@@ -57,11 +57,11 @@ public class MenuUtil {
 
                 System.exit(0);
             } else {
-                System.out.println("Yanlış seçim");
+                System.out.println("Incorrect choice");
                 selectMenu(i);
             }
         } else {
-            System.out.println("incorrect choice");
+            System.out.println("Incorrect choice, please select admin or user");
         }
 
     }

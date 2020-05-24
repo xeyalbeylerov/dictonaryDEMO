@@ -17,29 +17,47 @@ public class Dictonary {
 
     //butun dillere eynianda soz add edir
     public static void addWords() {
-        int localCount = Config.count++;
+        int count=Config.getInstance().getCount();
+        int localCount = count++;
+        Config.getInstance().setCount(count);
         for (Map.Entry<String, Map<Integer, String>> entry : Config.getInstance().getDict().entrySet()) {
             String word = InputUtil.typeString(entry.getKey() + " dilində daxil edin");
             Map<Integer, String> hmap = entry.getValue();
             hmap.put(localCount, word);
-
+            entry.setValue(hmap);
         }
+//        Config.getInstance().getDict().forEach((k,v)->{
+//            String word = InputUtil.typeString(k + " dilində daxil edin");
+//           v.put(localCount, word);
+//        });
     }
 
     //Butun dillerin sozlerini alt-alta cap edir
     public static void showAllLanguagesWord() {
-        for (Map.Entry<String, Map<Integer, String>> entry : Config.getInstance().getDict().entrySet()) {
-            Map<Integer, String> hmap = entry.getValue();
-            for (int i = 0; i < Config.count; i++) {
-                if (entry.getValue().get(i) != null) {
-                    System.out.print(i + " " + entry.getKey() + "-");
-                    System.out.println(entry.getValue().get(i));
+//        for (Map.Entry<String, Map<Integer, String>> entry : Config.getInstance().getDict().entrySet()) {
+//            Map<Integer, String> hmap = entry.getValue();
+//
+//            for (int i = 0; i < Config.count; i++) {
+//                if (hmap.get(i) != null) {
+//                    System.out.print(i + " " + entry.getKey() + "-");
+//                    System.out.println(hmap.get(i));
+//                } else {
+//                    System.out.println(i + " empty");
+//                }
+//
+//            }
+//        }
+        Config.getInstance().getDict().forEach((k,v)->{
+            for (int i = 0; i < Config.getInstance().getCount(); i++) {
+                if (v.get(i) != null) {
+                    System.out.print(i + " " +k + "-");
+                    System.out.println(v.get(i));
                 } else {
                     System.out.println(i + " empty");
                 }
 
             }
-        }
+        });
     }
 
     //Butun dillerin sozlerini alt-alta cap edir
@@ -86,7 +104,6 @@ public class Dictonary {
                 hmap = entry.getValue();//hmap-a uygun dilli hashmap menimsedilir
             }
         }
-
         if (lang == null) System.out.println("dil tapilmadi");
         //bura qeder ancaq dil indeksi alinir
 
@@ -98,7 +115,7 @@ public class Dictonary {
     private static int findHashMapWordAndRetunIndex(Map<Integer, String> hmap) {
         int result = -1;
         String f = InputUtil.typeString("Axtarilan soz");
-        for (int i = 0; i < Config.count; i++) {//umumi count qeder dovr edir
+        for (int i = 0; i < Config.getInstance().getCount(); i++) {//umumi count qeder dovr edir
             if ((hmap.get(i) != null)) {//soz varsa
                 if (hmap.get(i).equalsIgnoreCase(f)) {//soz uygun gelirse
 //                        System.out.println("tapildi " + entry.getValue().get(i));
@@ -113,7 +130,7 @@ public class Dictonary {
     }
 
     //findWords metodunun indeks qaytaran varianti/Butun dilleri yoxlayir, eger soz varsa ilk qabagina cixan sozun indeksini qaytarir
-    public static int findAllLanguagesAndReturnIndex() {
+    private static int findAllLanguagesAndReturnIndex() {
 
 
         for (Map.Entry<String, Map<Integer, String>> entry : Config.getInstance().getDict().entrySet()) {

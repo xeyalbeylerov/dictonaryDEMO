@@ -8,7 +8,7 @@ public class Config implements Serializable {
     public final static String filePath ="file.txt";
     private static Config config = null;
     private Map<String, Map<Integer, String>> dict = new HashMap<>();
-    public static int count = 0;
+    public int count = 0;
 
 
     public Map<String, Map<Integer, String>> getDict() {
@@ -29,5 +29,13 @@ public class Config implements Serializable {
     public static void setConfig(Config config) {
         if(config!=null)
         Config.config = config;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
     }
 }

@@ -1,14 +1,19 @@
 package main;
 
+import bean.Config;
 import util.InputUtil;
 import util.LoginUtil;
 import util.MenuUtil;
+
+import java.util.Map;
 
 public class Main {
 
 
     public static void main(String[] args) {
-
+        Config c = Context.getFileUtility().readObjectFromFile();
+        Config.setConfig(c);
+        System.out.println(c);
         startApp();
     }
 
@@ -18,10 +23,13 @@ public class Main {
         if (personIndex == 1 || personIndex == 0) {
             while (true) {
                 MenuUtil.selectMenu(personIndex);
+
+                System.out.println("Dict size " + Config.getInstance().getDict().size());
             }
 
         } else {
             System.err.println("User not found");
+
             startApp();
         }
     }

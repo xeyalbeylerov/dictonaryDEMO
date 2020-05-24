@@ -2,30 +2,11 @@ package util;
 
 import bean.Config;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class Dictonary {
-    //    public static void addDictonary(){
-//        Integer input=InputUtil.typeInteger("Please enter lang index 1(Azerbaijan) 2(English)");
-//        if(input==1){
-//
-//        }else if(input==2){
-//
-//        }else {
-//            System.out.println("Illegal input");
-//            addDictonary();
-//        }
-//    }
-//    public static void writeDictonary(){
-//        String inputAze=InputUtil.typeString("Please enter Word in Azerbaijan language");
-//        String inputEng=InputUtil.typeString("Please enter Word in English language");
-//
-//        Config.getInstance().getWord().put(inputAze,inputEng);
-//
-//    }
+
     //dil elave edir
     public static void addLanguage() {
         String dil = InputUtil.typeString("Yeni dilin adını daxil edin");
@@ -39,7 +20,9 @@ public class Dictonary {
         int localCount = Config.count++;
         for (Map.Entry<String, Map<Integer, String>> entry : Config.getInstance().getDict().entrySet()) {
             String word = InputUtil.typeString(entry.getKey() + " dilində daxil edin");
-            entry.getValue().put(localCount, word);
+            Map<Integer, String> hmap = entry.getValue();
+            hmap.put(localCount, word);
+
         }
     }
 
@@ -143,27 +126,6 @@ public class Dictonary {
         return -1;
     }
 
-    //soz axtarib capa verir
-//    public static void findWords() {
-//
-//        String f = InputUtil.typeString("Axtarilan soz");
-//        for (Map.Entry<String, Map<Integer, String>> entry : Config.getInstance().getDict().entrySet()) {
-//            Map<Integer, String> hmap = entry.getValue();//her dile uygun hashmap burada alinir
-//
-//            for (int i = 0; i < Config.count; i++) {
-//                if ((hmap.get(i) != null)) {
-//                    if (hmap.get(i).equalsIgnoreCase(f)) {
-//                        System.out.println("tapildi " + hmap.get(i));
-//                    } else {
-////                        System.out.println("tapilmadi");
-//                    }
-//                } else {
-////                    System.out.println("null");
-//                }
-//            }
-//
-//        }
-//    }
 
     //indeks alib sozleri duzgun sekilde cap edir
     public static void findWordAndPrint() {
@@ -227,26 +189,4 @@ public class Dictonary {
         System.out.println("");
     }
 
-//    public static int findWordNumber() {
-//
-//        String f = InputUtil.typeString("Axtarilan soz");
-//        for (Map.Entry<String, Map<Integer, String>> entry : Config.getInstance().getDict().entrySet()) {
-//            Map<Integer, String> hmap = entry.getValue();
-//
-//            for (int i = 0; i < Config.count; i++) {
-//                if ((entry.getValue().get(i) != null)) {
-//                    if (entry.getValue().get(i).equalsIgnoreCase(f)) {
-////                        System.out.println("tapildi " + entry.getValue().get(i));
-//                        return i;
-//
-//                    } else {
-//
-//                    }
-//                } else {
-//
-//                }
-//            }
-//        }
-//        return -1;
-//    }
 }
